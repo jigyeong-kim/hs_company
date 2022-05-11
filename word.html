@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+  <style>
+  </style>
+</head>
+<body>
+  <div><span id="order">1</span>번째 참가자</div>
+  <div>제시어 : <span id="word"></span></div>
+  <input type="text">
+  <button>입력</button>
+  <!--<button>버튼2</button>-->
+  <!--<button>버튼3</button>-->
+  
+  
+  
+  <script>
+    const number = parseInt(prompt('몇 명이 참가하나요?'), 10); //입력받은 값 변수로 저장, 문자열 숫자열로 바꿈, 10진법, 취소 누르면 null값
+    console.log('number', number);
+    console.log(typeof number); //number
+    
+    // 대화상자 종류 3가지
+    alert(number); //사용자에게 메세지를 알릴때
+    const yesOrNo = confirm('맞나요?'); //사용자에게 의사를 물어볼 때, 확인을 누르면 true, 취소를 누르면 false
+
+    //const $button = document.querySelector('button'); //button 태그 선택하기
+    //const $$buttons = document.querySelectorAll('button'); //button 태그 모두 선택
+
+    document.querySelector('input').addEventListener('input', function(){
+        console.log('글자 입력');
+    }); 
+    document.querySelector('input').addEventListener('input', function(event){
+        console.log('글자 입력', event.target.value); //입력한 값이 들어있음
+    }); //글자를 입력했는지 이벤트 감지
+    document.querySelector('button').addEventListener('click', function(){
+        console.log('버튼 클릭');
+    }); //버튼을 클릭했는지 이벤트 감지
+
+    //const $button = document.querySelector('button'); //button 태그 선택하기
+    //const $$buttons = document.querySelectorAll('button'); //button 태그 모두 선택
+
+  </script>
+</body>
+</html>

@@ -49,12 +49,14 @@
     //return () => { 
       //화살표 함수 바로 뒤에 return이 오면 생략 가능
       if(operator){ 
-        //비어있지 않다
+        //연산자가 있고
+        if (!numTwo) {
+            $result.value = '';
+        } //넘버2가 없으면 numOne숫자 지우기
         numTwo += number;
-        //numTwo += event.target.textContent;
         //
       }else{ 
-        // 비어있다
+        // 연산자가 없으면
         numOne += number; 
       }
       $result.value += number;
@@ -63,7 +65,6 @@
     //함수가 함수를 호출하는 것
    
     document.querySelector('#num-0').addEventListener('click', onClickNumber('0'));
-    //document.querySelector('#num-0').addEventListener('click', onClickNumber);
     document.querySelector('#num-1').addEventListener('click', onClickNumber('1'));
     document.querySelector('#num-2').addEventListener('click', onClickNumber('2'));
     document.querySelector('#num-3').addEventListener('click', onClickNumber('3'));
@@ -77,20 +78,72 @@
     document.querySelector('#num-9').addEventListener('click', onClickNumber('9'));
 
     const onClickOperator = (op) => () => {
-      if(numOne){
+      if(numOne){//numOne 숫자가 있으면
         operator = op;
-        $operator.value = op;
-      }else{
+        $operator.value = op; //연산자 넣기
+      }else{ //numOne 숫자가 없으면
         alert('숫자를 먼저 입력하세요');
       }
-    }
-    document.querySelector('#plus').addEventListener('click', () => {});
-    document.querySelector('#minus').addEventListener('click', () => {});
+    } //고차함수
+    document.querySelector('#plus').addEventListener('click', onClickOperator('+'));
+    document.querySelector('#minus').addEventListener('click', onClickOperator('-'));
    
-    document.querySelector('#divide').addEventListener('click', () => {});
-    document.querySelector('#multiply').addEventListener('click', () => {});
-    document.querySelector('#calculate').addEventListener('click', () => {});
-    document.querySelector('#clear').addEventListener('click', () => {});
+    document.querySelector('#divide').addEventListener('click', onClickOperator('/'));
+    document.querySelector('#multiply').addEventListener('click', onClickOperator('*'));
+    
+    //결과 값
+//     document.querySelector('#calculate').addEventListener('click', () => { // =을 눌렀을때
+//         if (numTwo) { //numTwo가 있고
+//             switch (operator) { //연산자가 
+//             case '+':
+//                 $result.value = parseInt(numOne) + parseInt(numTwo); //+연산자는 문자열 숫자열 구분 못함
+//                 break;
+//             case '-':
+//                 $result.value = numOne - numTwo;
+//                 break;
+//             case '*':
+//                 $result.value = numOne * numTwo;
+//                 break;
+//             case '/':
+//                 $result.value = numOne / numTwo;
+//                 break;
+//             default:
+//                 break;
+//             }
+//         } else {
+//             alert('숫자를 먼저 입력하세요.');
+//         }
+//     });
+    
+    document.querySelector('#calculate').addEventListener('click', () => { // =을 눌렀을때
+        if (numTwo) { //numTwo가 있고
+            if(operator ==='+'){ //'+'눌렀을때
+              $result.value = parseInt(numOne) + parseInt(numTwo); //+연산자는 문자열 숫자열 구분 못함
+            }else if(operator === '-'){ //'-'눌렀을때
+              $result.value = numOne - numTwo;
+            }else if(operator === '*'){ //'*'눌렀을때
+              $result.value = numOne * numTwo;
+            }else if(operator === '/'){ //'/'눌렀을때
+              $result.value = numOne / numTwo;
+            }
+            // numTwo가 있을때 '='을 누르면 
+            $operator.value = ''; // 연산자 비우기
+            numOne = $result.value; // numOne에는 결과값 
+            operator = ''; // 연산자 변수 담을 준비
+            numTwo = ''; //numTwo 변수 담을 준비
+        } else {
+            alert('숫자를 먼저 입력하세요.');
+        }
+    });
+
+    // 초기화
+    document.querySelector('#clear').addEventListener('click', () => { //C 누르면 변수 빈값으로 초기화
+        numOne = '';
+        operator = '';
+        numTwo = '';
+        $operator.value = '';
+        $result.value = '';
+    });
   
   </script>
 </body>

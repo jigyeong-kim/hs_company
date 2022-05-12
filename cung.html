@@ -32,17 +32,17 @@
 
           const order = parseInt($order.textContent); //현재순서
 
-          if(order + 1 > number){
-            $order.textContent = 1;
-          }else{
+          if(order + 1 > number){ // order + 1이 총인원수 보다 크면
+            $order.textContent = 1; // 처음순서로 초기화
+          }else{ // 총인원수보다 작으면 
             $order.textContent = order + 1;
           }
           
         }else{ //올바르지 않다
           alert('올바르지 않은 단어입니다!');
         }
-        $input.value = '';
-        $input.focus();
+        $input.value = ''; //빈값으로 만들기
+        $input.focus(); //커서 위치
       };
       const onInput = (event) => {
         newWord = event.target.value; // 입력하는 단어를 현재 단어로

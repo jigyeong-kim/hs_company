@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+  <style>
+    *{box-sizing: border-box;}    
+    #result { width: 170px; height: 50px; margin: 5px 5px 5px 0; text-align: right }
+    #operator { width: 50px; height: 50px; margin: 5px; text-align: center }
+    .wrap{width: 250px;font-size:0;line-height: 0;}
+    button{display:inline-block;width: 50px; height: 50px; margin: 5px}
+  </style>
+</head>
+<body>
+  <input readonly id="operator">
+  <input readonly type="number" id="result">
+  <div class="wrap">
+    <button id="num-7">7</button>
+    <button id="num-8">8</button>
+    <button id="num-9">9</button>
+    <button id="plus">+</button>
+
+    <button id="num-4">4</button>
+    <button id="num-5">5</button>
+    <button id="num-6">6</button>
+    <button id="minus">-</button>
+    
+    <button id="num-1">1</button>
+    <button id="num-2">2</button>
+    <button id="num-3">3</button>
+    <button id="divide">/</button>
+
+    <button id="clear">C</button>
+    <button id="num-0">0</button>
+    <button id="calculate">=</button>
+    <button id="multiply">X</button>
+  </div>
+  <script>
+    //1. numOne을 입력한다.
+    //2. 연산자를 입력한다.
+    //3. numTwo를 입력한다.
+    //4. =버튼을 누른다.
+    //5. 계산한다.
+    //6. 결과를 표시한다.
+    //7. 결과를 numOne로 변수 저장
+    //8. 연산자를 입력한다.
+    //9. numTwo를 입력한다.
+    //10. =버튼을 누른다.
+    //11. 결과를 표시한다.
+    //12. C버튼을 누르면 모든 변수 빈값
+
+
+
+    //1. 숫자 버튼을 누른다.
+    //1-1. 연산자가 없으면 numOne
+    //1-2. 연산자가 있으면 numTwo
+
+    //2. 연산자 버튼을 누른다.
+    //2-1. numOne이 있으면 입력
+    //2-2. numOne이 없으면 alert
+
+    //3. = 버튼을 누른다.
+    //3-1. numTwo가 있으면 결과값
+    //3-2. numTwo가 없으면 alert
+
+    //4. 결과값을 numOne으로 변수 저장
+    
+    //5. C버튼 누르면 모든 변수 빈값
+
+
+    //
+
+    let numOne = '';
+    let operator = '';
+    let numTwo = '';
+
+    const $operator = document.querySelector('#operator');
+    const $result = document.querySelector('#result');
+
+    const onClickNumber = ()
+
+
+
+
+  </script>
+</body>
+</html>

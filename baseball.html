@@ -7,12 +7,19 @@
   <title>Document</title>
 </head>
 <body>
+  <form id="form">
+    <input type="text" id="input">
+    <button>확인</button>
+  </form>
+  <div id="logs"></div> <!--사용자들이 입력한 정답들-->
+
+
   <script>
     //1.숫자 네개를 뽑는다
 
     //2.답을 제출한다
     
-    //3.답이 형식에 맞는지 검사한다.(4글자 인지)
+    //3.답이 형식에 맞는지 검사한다.(4글자 인지, 중복 된 숫자가 있는지, 이미 시도한 값은 아닌지)
     //3-1.alret 에러표시
     
     //4.홈런인지 검사한다.
@@ -22,6 +29,47 @@
     //5-1.졌다고 표시
     
     //6.몇스트라이크 몇볼인지 표시한다.
+
+
+
+    // 전부 맞았을 때: 홈런
+    // 숫자는 맞췄는데 위치가 틀렸을 때(or) : 볼
+    // 숫자도 맞고 위치도 맞았을 때(and) : 스트라이크
+    // 숫자도 틀리고 위치도 틀렸을 때 : 아웃
+
+    const $input = document.querySelector('#input');
+    const $form = document.querySelector('#form');
+    const $logs = document.querySelector('#logs');
+
+
+    //숫자 배열 만들기
+    
+    const numbers = [];
+    //const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    for (let n = 1; n <= 9; n += 1) {
+      numbers.push(n);
+    } 
+    //while문으로 바꿔보기
+    // let n = 1;
+    // while (n <= 9) {
+    //   numbers.push(n);
+    //   n += 1;
+    // }
+
+
+    // 숫자 뽑아서 배열에 담아놓기
+    const answer = [];
+    for (let n = 0; n <= 3; n += 1) { // 네 번 반복 , 0,1,2,3 네번
+      const index = Math.floor(Math.random() * (9 - n)); // 0~8 정수 , 인덱스는 0부터여서 +1 안함 
+      // 
+      answer.push(numbers[index]);
+      numbers.splice(index, 1); //뽑은것 하나 지우기
+    }
+    console.log(answer);
+    
+    
+  
   </script>
 </body>
 </html>

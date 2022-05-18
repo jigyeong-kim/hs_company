@@ -42,8 +42,8 @@
     let operator = '';
     let numTwo = '';
 
-    const $operator = document.querySelector('#operator');
-    const $result = document.querySelector('#result');
+    const $operator = document.querySelector('#operator'); //연산자
+    const $result = document.querySelector('#result'); //결과값
 
     const onClickNumber = (number) => (event) => {
     //return () => { 
@@ -59,7 +59,7 @@
         // 연산자가 없으면
         numOne += number; 
       }
-      $result.value += number;
+      $result.value += number; //#result에 number 넣기
     };
     //고차함수 (high order function)
     //함수가 함수를 호출하는 것
@@ -77,7 +77,7 @@
     document.querySelector('#num-8').addEventListener('click', onClickNumber('8'));
     document.querySelector('#num-9').addEventListener('click', onClickNumber('9'));
 
-    const onClickOperator = (op) => () => {
+    const onClickOperator = (op) => () => { //연산자를 누르면
       if(numOne){//numOne 숫자가 있으면
         operator = op;
         $operator.value = op; //연산자 넣기
@@ -116,24 +116,24 @@
 //     });
     
     document.querySelector('#calculate').addEventListener('click', () => { // =을 눌렀을때
-        if (numTwo) { //numTwo가 있고
-            if(operator ==='+'){ //'+'눌렀을때
-              $result.value = parseInt(numOne) + parseInt(numTwo); //+연산자는 문자열 숫자열 구분 못함
-            }else if(operator === '-'){ //'-'눌렀을때
-              $result.value = numOne - numTwo;
-            }else if(operator === '*'){ //'*'눌렀을때
-              $result.value = numOne * numTwo;
-            }else if(operator === '/'){ //'/'눌렀을때
-              $result.value = numOne / numTwo;
-            }
-            // numTwo가 있을때 '='을 누르면 
-            $operator.value = ''; // 연산자 비우기
-            numOne = $result.value; // numOne에는 결과값 
-            operator = ''; // 연산자 변수 담을 준비
-            numTwo = ''; //numTwo 변수 담을 준비
-        } else {
-            alert('숫자를 먼저 입력하세요.');
+      if (numTwo) { //numTwo가 있고
+        if(operator ==='+'){ //'+'눌렀을때
+          $result.value = parseInt(numOne) + parseInt(numTwo); //+연산자는 문자열 숫자열 구분 못함
+        }else if(operator === '-'){ //'-'눌렀을때
+          $result.value = numOne - numTwo;
+        }else if(operator === '*'){ //'*'눌렀을때
+          $result.value = numOne * numTwo;
+        }else if(operator === '/'){ //'/'눌렀을때
+          $result.value = numOne / numTwo;
         }
+        // numTwo가 있을때 '='을 누르면 
+        $operator.value = ''; // 연산자 비우기
+        numOne = $result.value; // numOne에는 결과값 
+        operator = ''; // 연산자 변수 담을 준비
+        numTwo = ''; //numTwo 변수 담을 준비
+      } else {
+          alert('숫자를 먼저 입력하세요.');
+      }
     });
 
     // 초기화

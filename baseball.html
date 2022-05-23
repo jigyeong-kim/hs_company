@@ -117,14 +117,20 @@
       // 몇 스트라이크 몇 볼인지 검사
       let strike = 0;
       let ball = 0;
+<<<<<<< HEAD
       for (let i = 0; i < answer.length; i++) { //정답 길이만큼 반복 4
         const index = value.indexOf(answer[i]);  //input에 적은 value에 answer정답이 있는지 찾고 index값 나옴
+=======
+      for (let i = 0; i < answer.length; i++) { //정답 길이만큼 반복, 4
+        const index = value.indexOf(answer[i]); //input에 적은 value에 answer정답이 있는지 찾고 index값 나옴
+>>>>>>> f77e1fa654e45343095676d5af7c408892937616
         if (index > -1) { //-1인 이유는 인덱스가 0부터 시작이기 때문 없다면 -1반환 
           // 일치하는 숫자 발견
           if (index === i) { //정답에서 i가 위치한 인덱스와 입력한 값의 인덱스 값이 일치하면 
             // 자릿수도 같음
             strike += 1;
-          } else { // 숫자만 같음
+          } else { 
+            // 숫자만 같음
             ball += 1;
           }
         }

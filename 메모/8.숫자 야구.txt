@@ -1,0 +1,187 @@
+5-2 무작위로 숫자 뽑기
+
+***Math.random()
+
+- 0 이상 1 미만의 수를 무작위로 생성
+- 따라서 Math.random()에 9를 곱한 후 1을 더하면 된다
+
+------------------------------------------------
+
+Math.random() 
+ - 0 <= x < 1 // 소수점 랜덤 ex) 0.3225444
+Math.random() * 9 
+ - 0 <= x < 9 // 소수점 때문에  9, 9.99999
+Math.random() * 9 + 1 
+ - 1 <= x < 10 // 1이상이여해서 + 1
+Math.floor(Math.random() * 9 + 1) 
+ - x = {1, 2, 3, 4, 5, 6, 7, 8, 9} // 숫자 내림, 10이하여야 하니까 내림
+
+------------------------------------------------
+
+------------------------------------------------
+ Math.floor() // 숫자 내림
+ Math.ceil() // 숫자 올림
+ Math.round() // 숫자 반올림
+------------------------------------------------
+
+window.crypto.getRandomValues()
+- 좀 더 정확한 랜덤 함수
+
+단순한 값들을 모아놓을 때는 배열 [ ] 안에 쓰기
+각각 값들에 이름을 붙이고 구분해야 할 때는 객체 { } 안에 쓰기
+
+5-3 입력값 검증하기
+
+- button 달린 input은 form안에 해주는게 웹표준에 좀 더 맞음
+- form 안에 input이 있으면 form에 이벤트를 달아줌
+- form 안에 input, button을 넣으면 button안누르고 엔터 눌러서 값 제출할수 있음
+- form은 submit 이벤트 있음
+- button을 누르면 form에 있는 submit 호출
+- button을 누르면 사이트 주소에 ?붙음, form의 기본동작, 페이지의 새로고침되는 현상
+- 새로고침 되면 변수로 담아논 것들이 날라감
+- preventDefault로 기본 동작 막기
+
+
+new Set 
+- 중복을 제거하는 배열 
+- Set은 중복을 허용하지 않는 배열
+- new는 10장에서 나옴?
+- new Set는 .length로 갯수를 세지 않고 .size로 셈
+
+alert은 return값이 undifined
+
+
+5-4 입력값과 정답 비교하기
+
+textContent, innerHtml
+
+textContent
+- 모든 글자를 텍스트로 인식
+innerHtml
+- 태그 인식
+
+***createTextNode, createElement, append, 
+- 태그와 텍스트를 만드는 메서드
+- append나 appendChild 하기 전까지는 화면에 보이지 않는다
+
+***appendChild, append
+- document.createElement, document.createTextNode로 만든 태그나 텍스트를 선택한 태그의 자식 태그로 넣는다
+- appendChild로는 하나만 넣을 수 있고, append를 사용하면 여러 개를 동시에 넣을 수 있다.
+- append로 텍스트 추가할 때는 문자열로 바로 넣어도 됨
+
+
+***indexOf와 includes
+
+- 배열이나 문자열에 원하는 값이 들어 있는지 찾는 메서드
+- indexOf 원하는 값이 들어 있다면 해당 인덱스를 알려줌. 들어있지 않다면 -1반환( 인덱스값은 0부터 시작 )
+- indexOf 요소의 자료형까지 같아야 함
+- includes 조금 더 직관적으로 true/false를 반환
+
+*********순서도 그리기 사이트*********************
+https://app.diagrams.net/
+
+
+5-4.forEach, map, fill
+
+***forEach와 map
+
+- forEach는 반복문 효과를 내는 배열의 메서드
+- map도 반복문 역할을 하지만, 반환값이 있다는 점에서 forEach와 다름
+- map은 기존 배열의 값이 바뀌는 것이 아니라 새로운 배열을 만듬
+
+
+-------------------------------------
+//forEach
+
+array.forEach((element, index) => { })
+-------------------------------------
+
+-------------------------------------
+//fill, map
+
+Array(9)
+(9) [비어 있음 × 9] 
+// 아무것도 없는 배열 9개
+
+Array(9).fill()
+(9) [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]
+// 아무것도 없는 배열 9개에 빈값 넣기
+
+Array(9).fill(0)
+(9) [0, 0, 0, 0, 0, 0, 0, 0, 0]
+// 아무것도 없는 배열 9개에 0 넣기
+
+Array(9).fill(0).map((element, index) => {return index + 1;})
+(9) [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// 아무것도 없는 배열 9개의 0에 1씩 증가
+-------------------------------------
+
+
+
+
+
+
+
+
+1분퀴즈
+
+-------------------------------------------------
+
+1 2에서 5까지의 숫자를 뽑고 싶습니다. 제대로 작동하도록 (가)~(라)를 모두 채우세요. 
+반복문의 시작 값과 끝 값을 입력하는 스타일에 관련된 문제입니다.
+
+
+const answer = [];
+for (let n = 0; n < (가); n++) 
+{
+  answer.push(n + 2);
+}
+
+(가) = 4
+
+// 2에서 5까지는 [2, 3, 4, 5] 
+
+
+
+const answer = [];
+for (let n = 0; n <= (나); n++) 
+{
+  answer.push(n + 2);
+}
+
+(나) = 3
+
+
+const answer = [];
+for (let n = 1; n < (다); n++) 
+{
+  answer.push(n + 1);
+}
+
+(다) = 5
+
+const answer = [];
+for (let n = 1; n <= (라); n++) 
+{
+  answer.push(n + 1);
+}
+
+(라) = 4
+
+
+2 forEach 메서드를 사용한 코드를 for 문으로 바꿔 보세요.
+
+
+const array = [1, 3, 5, 7]; 
+array.forEach((number, index) => { 
+  console.log(number, index); 
+});
+
+
+const array = [1, 3, 5, 7]; 
+
+for (let i = 0; i < array.length; i++) 
+{
+   console.log(array[i], i);
+}
+-------------------------------------------------

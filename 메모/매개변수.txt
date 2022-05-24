@@ -1,0 +1,22 @@
+Array.prototype.at( )
+- 배열에서 해당 값에 해당하는 인덱스의 요소 반환
+-------------------------------------------
+const array = [1, 2, 3, 4, 5]
+console.log(array.at(2))
+
+//3
+-------------------------------------------
+
+Array.prototype.concat( )
+- 배열과 배열을 합쳐서 새 배열을 반환
+-------------------------------------------
+const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+console.log(array1.concat.(array2));
+
+//['a', 'b', 'c', 'd', 'e', 'f']
+-------------------------------------------
+
+Object.prototype.constructor
+- 
+

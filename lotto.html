@@ -31,8 +31,9 @@
     //4. 1초마다 공을 하나씩 화면에 표시한다.
 
     const candidate = Array(45).fill().map((v, i) => i + 1);
-    // 빈배열 45개를 만들고 index에 1더하기
+    // 빈배열 45개 v를 만들고 index에 1더하기
 
+    //숫자를 섞고 7개 뽑기
     const shuffle = [];
     while (candidate.length > 0) {
       const random = Math.floor(Math.random() * candidate.length); // 무작위 인덱스 뽑기
@@ -50,11 +51,9 @@
     //$ball 색칠하기
     
     function colorize(number, $ball) {
-      //colorize
+      //colorize 숫자와 태그를 인수로 받아 주어진 태그의 숫자에 따라 다른 CSS를 적용
+      //태그.style.CSS속성 = 값;을 하면 태그에 CSS 속성이 적용
       if (number < 10) {
-        
-        //태그.style.CSS속성 = 값;을 하면 태그에 CSS 속성이 적용
-        
         $ball.style.backgroundColor = 'red';
         $ball.style.color = 'white';
       } else if (number < 20) {

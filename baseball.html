@@ -31,6 +31,17 @@
     //5-1.졌다고 표시
     
     //6.몇스트라이크 몇볼인지 표시한다.
+  
+    //-------------self Check--------------------
+
+    //7.0볼 0스트라이크인가?
+    //7-1.시도횟수를 1늘린다.
+
+    //8.아웃이라고 표시하고 아웃횟수를 1늘린다.
+    
+    //9.세번 아웃되었는가?
+    //9-1.세번아웃이면 패배
+
 
 
 
@@ -90,8 +101,16 @@
       return true;
     };
 
+    //패배 메세지 띄우기
+    function defeated() {
+      const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+      $logs.appendChild(message);
+    }
 
     //입력값 받기
+
+    let out = 0;
+    
     $form.addEventListener('submit', (event) => {
       event.preventDefault(); // 기본 동작 막기(submit하는 form의 새로고침되는 기본동작)
       const value = $input.value; //$input에 입력 된 내용 변수 value에 저장
@@ -109,16 +128,35 @@
         return;
       }
       if (tries.length >= 9) { // 시도가 9번했고 10번째 입력했을때 오답이면 실행되어야 해서 9
-        const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
-        $logs.appendChild(message); //logs에 메세지 추가
+
+        defeated(); //패배 메세지 띄우기
+
+        // const message = document.createTextNode(`패배! 정답은 ${answer.join('')}`);
+        // $logs.appendChild(message); //logs에 메세지 추가
         
         return;
       }
       // 몇 스트라이크 몇 볼인지 검사
       let strike = 0;
       let ball = 0;
-      for (let i = 0; i < answer.length; i++) { //정답 길이만큼 반복 4
-        const index = value.indexOf(answer[i]);  //input에 적은 value에 answer정답이 있는지 찾고 index값 나옴
+      // for (let i = 0; i < answer.length; i++) { //정답 길이만큼 반복 4
+      //   const index = value.indexOf(answer[i]);  //input에 적은 value에 answer정답이 있는지 찾고 index값 나옴
+      //   if (index > -1) { //-1인 이유는 인덱스가 0부터 시작이기 때문 없다면 -1반환 
+      //     // 일치하는 숫자 발견
+      //     if (index === i) { //정답에서 i가 위치한 인덱스와 입력한 값의 인덱스 값이 일치하면 
+      //       // 자릿수도 같음
+      //       strike += 1;
+      //     } else { 
+      //       // 숫자만 같음
+      //       ball += 1;
+      //     }
+      //   }
+      // }
+
+      //foreach문
+
+      answer.forEach((number, i) => {
+        const index = value.indexOf(number);  //input에 적은 value에 answer정답이 있는지 찾고 index값 나옴
         if (index > -1) { //-1인 이유는 인덱스가 0부터 시작이기 때문 없다면 -1반환 
           // 일치하는 숫자 발견
           if (index === i) { //정답에서 i가 위치한 인덱스와 입력한 값의 인덱스 값이 일치하면 
@@ -129,11 +167,33 @@
             ball += 1;
           }
         }
+      });
+
+      //out
+
+      if (strike === 0 && ball === 0) { //스트라이크도 0이고 볼도 0이면
+        out++;//out 횟수 추가
+        $logs.append(`${value}:아웃`, document.createElement('br'));
+      } else {
+        $logs.append(`${value}:${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
       }
-      $logs.append(`${value}: ${strike} 스트라이크 ${ball} 볼`, document.createElement('br'));
+
+      if (out === 3) { //out이 3번이 되면
+        
+        defeated();//패배 메세지 띄우기
+
+        // const message = document.createTextNode(`패배! 정답은 ${answer.join(‘’)}`);
+        // $logs.appendChild(message);
+
+        return;
+      }
 
       tries.push(value); //입력한 값 tries에 저장
-    });
+    }); 
+
+
+
+    
 
   </script>
 </body>

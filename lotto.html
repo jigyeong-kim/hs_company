@@ -46,6 +46,29 @@
     //섞은 45개 배열을 index 0부터 6개 자르고, 오름차순으로 정렬
     const bonus = shuffle[6]; //7번째 보너스 공 
     console.log(winBalls, bonus); 
+    
+    //$ball 색칠하기
+    
+    function colorize(number, $tag) {
+      //colorize
+      if (number < 10) {
+        
+        //태그.style.CSS속성 = 값;을 하면 태그에 CSS 속성이 적용
+        
+        $tag.style.backgroundColor = 'red';
+        $tag.style.color = 'white';
+      } else if (number < 20) {
+        $tag.style.backgroundColor = 'orange';
+      } else if (number < 30) {
+        $tag.style.backgroundColor = 'yellow';
+      } else if (number < 40) {
+        $tag.style.backgroundColor = 'blue';
+        $tag.style.color = 'white';
+      } else {
+        $tag.style.backgroundColor = 'green';
+        $tag.style.color = 'white';
+      }
+    }
  
     //화면에 표출하기
 
@@ -69,11 +92,12 @@
     const showBall = (number, $target) => {
       const $ball = document.createElement('div'); //div 태그를 만들어서 $ball이라는 변수에 저장 
       $ball.className = 'ball'; //div태그에 ball이라는 class네임 정해주기
+      colorize(number, $ball);//$ball 색칠하기
       $ball.textContent = number; //숫자를 넣어주기
       $target.appendChild($ball); //결과값에 $ball 넣어주기 
     }
 
-    for(let i = 0; i < 6; i++){ 
+    for(let i = 0; i < winBalls.length; i++){ 
         setTimeout(() => {
         showBall(winBalls[i], $result);
       }, (i + 1) * 1000);  

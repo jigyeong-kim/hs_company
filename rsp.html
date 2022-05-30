@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가위바위보</title>
+</head>
+<style>
+      #computer {
+      width: 142px;
+      height: 200px;
+    }
+</style>
+<body>
+  <div id="computer"></div>
+  
+  <div>
+    <button id="scissors" class="btn">가위</button>
+    <button id="rock" class="btn">바위</button>
+    <button id="paper" class="btn">보</button>
+  </div>
+  
+  <div id="score">0</div>
+
+  <script>
+    
+    //1. 0.05초마다 가위바위보 값을 바꾼다.
+    //2. 값에 따라 이미지를 바꾼다.
+    //3. 가위바위보 버튼 클릭
+    //4. 점수를 계산한다.
+    //5. 점수를 표시한다.
+    //6. 1초 후에 그림을 돌린다.
+
+    const $computer = document.querySelector('#computer');
+    const $score = document.querySelector('#score');
+
+    const $rock = document.querySelector('#rock');
+    const $scissors = document.querySelector('#scissors');
+    const $paper = document.querySelector('#paper');
+    
+    const IMG_URL = './rsp.png';
+    $computer.style.background = `url(${IMG_URL}) 0 0`; // 가위
+    $computer.style.background = `url(${IMG_URL}) -220px 0`; // 바위
+    $computer.style.background = `url(${IMG_URL}) -440px 0`; // 보
+    $computer.style.backgroundSize = 'auto 200px';
+
+  </script>
+</body>
+</html>

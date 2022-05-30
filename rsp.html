@@ -13,7 +13,7 @@
     }
 </style>
 <body>
-  <div id="computer"></div>
+  <div id="computer"></div><!--컴퓨터 손 이미지-->
   
   <div>
     <button id="scissors" class="btn">가위</button>
@@ -21,7 +21,7 @@
     <button id="paper" class="btn">보</button>
   </div>
   
-  <div id="score">0</div>
+  <div id="score">0</div><!--점수표-->
 
   <script>
     
@@ -41,10 +41,51 @@
     
     const IMG_URL = './rsp.png';
     $computer.style.background = `url(${IMG_URL}) 0 0`; // 가위
-    $computer.style.background = `url(${IMG_URL}) -220px 0`; // 바위
-    $computer.style.background = `url(${IMG_URL}) -440px 0`; // 보
     $computer.style.backgroundSize = 'auto 200px';
 
-  </script>
+    const rspX = {
+      scissors: '0', // 가위
+      rock: '-232px', // 바위
+      paper: '-440px', // 보
+
+    };
+
+    let computerChoice = 'scissors';
+    const changeComputerHand = () => {
+      if (computerChoice === 'rock') {
+        computerChoice = 'scissors';
+      } else if (computerChoice === 'scissors') {
+        computerChoice = 'paper';
+      } else if (computerChoice === 'paper') {
+        computerChoice = 'rock';
+      }
+      $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+      $computer.style.backgroundSize = 'auto 200px';
+      //setTimeout(changeComputerHand, 50);
+    }
+    //setTimeout(changeComputerHand, 50);
+    
+    //
+    //setInterval(changeComputerHand, 50);
+
+    let intervalId = setInterval(changeComputerHand, 50);
+    let clickable = true;
+    const clickButton = () => {
+      if (clickable) {
+        clearInterval(intervalId);
+        clickable = false;
+        // 점수 계산 및 화면 표시
+        setTimeout(() => {
+          clickable = true;
+          intervalId = setInterval(changeComputerHand, 50);
+        }, 1000);
+      }
+    };
+
+    $rock.addEventListener('click', clickButton);
+    $scissors.addEventListener('click', clickButton);
+    $paper.addEventListener('click', clickButton);
+
+</script>
 </body>
 </html>

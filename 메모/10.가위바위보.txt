@@ -1,0 +1,14 @@
+7-1.
+
+이미지 스프라이트(image sprite)
+
+7-2.
+----------------------------------------
+$computer.style.background = url(' ') position-x position-y;
+$computer.style.backgroundSize = width height;
+//같이 써주기
+
+$computer.style.background = url(' ') position-x position-y / width height;
+
+----------------------------------------
+

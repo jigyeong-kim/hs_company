@@ -96,7 +96,7 @@
           ? 'rock' //바위
           : event.target.textContent === '가위' //바위가 아니고 가위를 선택했으면
             ? 'scissors' //가위
-            : 'paper' //아니면 보자기
+            : 'paper'; //아니면 보자기
         
         //점수 계산
         
@@ -116,12 +116,12 @@
           //가위-보, 바위-가위, 보-바위
           score += 1;
           message = '승리';
-        } else if ([-2, 1].includes(diff)) //(diff === -2 || diff === 1)
+        } else if ([-2, 1].includes(diff)) {//(diff === -2 || diff === 1)
           //보-가위, 가위-바위, 바위-보
           score -= 1;
           message = '패배';
         } else {
-          console.log('무승부');
+          message = '무승부';
         }
         
         // if (myChoice === 'rock') {
@@ -163,7 +163,8 @@
           // $paper.addEventListener('click', clickButton);
         
         }, 1000); //1초 뒤에 다시 실행
-      };
+      }
+    };
 
     //이 버튼들을 눌렀을때 
     $rock.addEventListener('click', clickButton);

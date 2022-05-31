@@ -3,6 +3,8 @@
 이미지 스프라이트(image sprite)
 
 7-2.
+
+7-3.
 ----------------------------------------
 $computer.style.background = url(' ') position-x position-y;
 $computer.style.backgroundSize = width height;
@@ -12,3 +14,101 @@ $computer.style.background = url(' ') position-x position-y / width height;
 
 ----------------------------------------
 
+rspX[computerChoice] 
+- 변수의 값자리
+
+rspX.computerChoice
+- 문자열
+
+setInterval
+-최대한 시간간격 보장
+-지정한 시간마다 주기적으로 실행
+
+setTimeout
+-시간간격 보장만 된다면 상관X
+-한번만 실행
+
+7-4
+
+ clearInterval, clearTimeout
+- setInterval, setTimeout 함수 취소
+- clearTimeout은 setTimeout에 지정한 함수가 아직 실행되지 않았을 때만 취소할 수 있음
+
+-----------------------------------------------
+let 아이디 = setInterval(함수, 밀리초);
+clearInterval(아이디);
+let 아이디 = setTimeout(함수, 밀리초);
+clearTimeout(아이디);
+-----------------------------------------------
+
+removeEventListener
+
+- addEventListener 함수를 제거할수 있음
+- 연결한 함수와 제거할 함수가 같아야함
+
+---------------------------------------------
+function 함수() {}
+태그.addEventListener('이벤트', 함수);
+태그.removeEventListener('이벤트', 함수);
+----------------------------------------------
+
+7-5. 가위바위보 규칙 찾기
+
+배열.includes
+- ||을 사용한 코드를 includes 메서드로 반복을 줄일 수 있음
+------------------------------------------
+
+diff === '바나나' || diff === '사과' || diff === '오렌지'
+// 또는
+['바나나', '사과', '오렌지'].includes(diff)
+
+----------------------------------------------
+
+
+
+
+
+
+1분 퀴즈
+-------------------------------------------------
+1 다음 setInterval 함수를 같은 효과를 내는 setTimeout으로 바꿔 보세요.
+
+setInterval(() => { 
+  console.log('hello'); 
+}, 1000);
+
+
+function hello() {
+  console.log('hello');
+  setTimeout(hello, 1000);
+}
+setTimeout(hello, 1000);
+
+
+2 다음 이벤트 리스너를 removeEventListener 메서드로 제거해 보세요.
+
+const fun = (값) => () => { 
+  console.log('고차 함수입니다', 값); 
+} 
+태그.addEventListener('click', fun(1));
+
+가장많이 하는 오답
+-> 태그.removeEventListener('click', fun(1));
+
+fun(1) === fun(1); // false 
+고차함수인 fun(1)은 새로운 함수를 반환하기 때문에  
+비교해보면 false가 나옴
+
+제거하고 싶다면 변수에 담아두고 해야함
+
+
+//정답 
+
+const fun = (값) => () => {
+  console.log('고차 함수입니다', 값);
+}
+const fun1 = fun(1);
+태그.addEventListener('click', fun1);
+태그.removeEventListener('click', fun1);
+
+-------------------------------------------------

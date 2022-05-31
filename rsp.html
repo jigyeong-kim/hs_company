@@ -43,48 +43,73 @@
     $computer.style.background = `url(${IMG_URL}) 0 0`; // 가위
     $computer.style.backgroundSize = 'auto 200px';
 
+    // const scissorsX = '-0'; // 가위
+    // const rockX = '-232px'; // 바위
+    // const paperX = '-440px'; // 보
+    
     const rspX = {
       scissors: '0', // 가위
       rock: '-232px', // 바위
       paper: '-440px', // 보
-
     };
 
-    let computerChoice = 'scissors';
+    let computerChoice = 'scissors'; //가위로 시작
     const changeComputerHand = () => {
-      if (computerChoice === 'rock') {
-        computerChoice = 'scissors';
-      } else if (computerChoice === 'scissors') {
-        computerChoice = 'paper';
-      } else if (computerChoice === 'paper') {
-        computerChoice = 'rock';
+      if (computerChoice === 'rock') { //주먹이면
+        computerChoice = 'scissors'; //가위로
+      } else if (computerChoice === 'scissors') { //가위면
+        computerChoice = 'paper'; //보자기로
+      } else if (computerChoice === 'paper') { //보자기면
+        computerChoice = 'rock'; //주먹으로
       }
-      $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`;
+      $computer.style.background = `url(${IMG_URL}) ${rspX[computerChoice]} 0`; //rspX에 해당객체를 position-X값으로 넣어주기
       $computer.style.backgroundSize = 'auto 200px';
       //setTimeout(changeComputerHand, 50);
     }
-    //setTimeout(changeComputerHand, 50);
+    //setTimeout(changeComputerHand, 50);//재기함수, 자기자신을 호출
     
-    //
+    // setInterval 사용
     //setInterval(changeComputerHand, 50);
 
     let intervalId = setInterval(changeComputerHand, 50);
-    let clickable = true;
+    
+    let clickable = true; //플래그 변수
     const clickButton = () => {
       if (clickable) {
-        clearInterval(intervalId);
-        clickable = false;
+        clearInterval(intervalId); //버튼을 눌렀을때 setInterval 취소, 손 멈추기
+        
+        clickable = false;//플래그 변수
+
+        // $rock.removeEventListener('click', clickButton);
+        // $scissors.removeEventListener('click', clickButton);
+        // $paper.removeEventListener('click', clickButton);//멈췄을 때 버튼 누르는 이벤트 할 수없게(버그때문)
+
+        const myChoice = event.target.textContent === '바위' //바위를 선택했으면
+          ? 'rock' //바위
+          : event.target.textContent === '가위' //바위가 아니고 가위를 선택했으면
+            ? 'scissors' //가위
+            : 'paper' //아니면 보자기
+        
         // 점수 계산 및 화면 표시
         setTimeout(() => {
-          clickable = true;
           intervalId = setInterval(changeComputerHand, 50);
-        }, 1000);
+
+          clickable = true;//플래그 변수
+        
+          // $rock.addEventListener('click', clickButton);
+          // $scissors.addEventListener('click', clickButton);
+          // $paper.addEventListener('click', clickButton);
+        
+        }, 1000); //1초 뒤에 다시 실행
       }
     };
 
+    //이 버튼들을 눌렀을때 
     $rock.addEventListener('click', clickButton);
     $scissors.addEventListener('click', clickButton);
     $paper.addEventListener('click', clickButton);
+
+
 
 </script>
 </body>

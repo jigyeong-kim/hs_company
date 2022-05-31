@@ -73,7 +73,14 @@
 
     let intervalId = setInterval(changeComputerHand, 50);
     
+    const scoreTable = {
+      rock: 0,
+      scissors: 1,
+      paper: -1,
+    }; //점수 내기
+    
     let clickable = true; //플래그 변수
+    let score = 0;
     const clickButton = () => {
       if (clickable) {
         clearInterval(intervalId); //버튼을 눌렀을때 setInterval 취소, 손 멈추기
@@ -84,11 +91,66 @@
         // $scissors.removeEventListener('click', clickButton);
         // $paper.removeEventListener('click', clickButton);//멈췄을 때 버튼 누르는 이벤트 할 수없게(버그때문)
 
+        //const myChoice = event.target.id;//
         const myChoice = event.target.textContent === '바위' //바위를 선택했으면
           ? 'rock' //바위
           : event.target.textContent === '가위' //바위가 아니고 가위를 선택했으면
             ? 'scissors' //가위
             : 'paper' //아니면 보자기
+        
+        //점수 계산
+        
+        // 가위: 1,  바위: 0,   보: -1
+        // 나\컴퓨터  가위    바위    보
+        // 가위       0       1       2
+        // 바위      -1       0       1
+        // 보        -2      -1       0
+        
+        const myScore = scoreTable[myChoice]; //내가 낸 것의 점수
+        const computerScore = scoreTable[computerChoice]; // 상대가 낸 것의 점수
+        const diff = myScore - computerScore;
+        
+        let message;
+        
+        if ([2, -1].includes(diff)){ //(diff === 2 || diff === -1) 
+          //가위-보, 바위-가위, 보-바위
+          score += 1;
+          message = '승리';
+        } else if ([-2, 1].includes(diff)) //(diff === -2 || diff === 1)
+          //보-가위, 가위-바위, 바위-보
+          score -= 1;
+          message = '패배';
+        } else {
+          console.log('무승부');
+        }
+        
+        // if (myChoice === 'rock') {
+        //   if (computerChoice === 'rock') {
+        //     console.log('무승부');
+        //   } else if (computerChoice === 'scissors') {
+        //     console.log('승리');
+        //   } else if (computerChoice === 'paper') {
+        //     console.log('패배');
+        //   }
+        // } else if (myChoice === 'scissors') {
+        //   if (computerChoice === 'rock') {
+        //     console.log('패배');
+        //   } else if (computerChoice === 'scissors') {
+        //     console.log('무승부');
+        //   } else if (computerChoice === 'paper') {
+        //     console.log('승리');
+        //   }
+        // } else if (myChoice === 'paper') {
+        //   if (computerChoice === 'rock') {
+        //     console.log('승리');
+        //   } else if (computerChoice === 'scissors') {
+        //     console.log('패배');
+        //   } else if (computerChoice === 'paper') {
+        //     console.log('무승부');
+        //   }
+        // }
+      
+        $score.textContent = `${message} 총: ${score}점`;
         
         // 점수 계산 및 화면 표시
         setTimeout(() => {
@@ -109,6 +171,7 @@
     $scissors.addEventListener('click', clickButton);
     $paper.addEventListener('click', clickButton);
 
+    console.log(computerChoice, myChoice, myScore, computerScore, diff);
 
 
 </script>

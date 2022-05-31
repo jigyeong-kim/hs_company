@@ -151,6 +151,8 @@
         // }
       
         $score.textContent = `${message} 총: ${score}점`;
+        console.log(computerChoice, myChoice, myScore, computerScore, diff);
+
         
         // 점수 계산 및 화면 표시
         setTimeout(() => {
@@ -171,8 +173,7 @@
     $scissors.addEventListener('click', clickButton);
     $paper.addEventListener('click', clickButton);
 
-    console.log(computerChoice, myChoice, myScore, computerScore, diff);
-
+    
 
 </script>
 </body>

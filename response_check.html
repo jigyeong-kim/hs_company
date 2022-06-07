@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반응속도</title>
+
+  <style>
+    #screen {
+      width: 300px;
+      height: 200px;
+      text-align: center;
+      user-select: none;
+    }
+    #screen.waiting {
+      background-color: aqua;
+    }
+    #screen.ready {
+      background-color: red;
+      color: white;
+    }
+    #screen.now {
+      background-color: greenyellow;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="screen" class="waiting">클릭해서 시작하세요</div>
+  <div id="result"></div>
+  
+  <script>
+    //파랑화면은 시작화면, 진행화면 빨강색, 완료화면 초록색
+    
+    //파랑화면을 클릭하면 빨강화면 전환
+    //빨강에서 초록화면으로 전환되기까지 시간재기
+    //아직 빨강화면일때 클릭하면 파랑화면으로 전화, 성급했다고 안내
+    //초록화면 클릭하기 까지 얼마나 걸렸는지 표시
+    //파랑화면으로 전환
+
+    //1. 파랑화면을 띄운다
+    
+    //2. 화면 클릭 시 무슨 색 화면인지 구분하기
+    
+    //3. 파란색 화면 클릭시
+    //3-1. 빨강색 화면으로 전환
+    //3-2. 초록화면 전환하고 시간 측정
+
+    //4. 빨강색 화면 클릭시
+    //4-1. 파랑화면으로 전환하고 성급했다고 안내
+
+    //5. 초록색 화면 클릭시
+    //5-1. 클릭할 때까지 얼마나 걸렸는지 측정하고 표시
+    //5-2. 파란화면으로 전환
+
+    const $screen = document.querySelector('#screen');
+    const $result = document.querySelector('#result');
+
+  </script>
+
+</body>
+</html>

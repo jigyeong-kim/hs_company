@@ -122,6 +122,15 @@
         $result.textContent = `현재 ${current}ms, 평균: ${average}ms`;
         // 초록색 화면을 클릭하면 시간차와 평균값을 화면에 표출
         
+        //self check 상위 5개만 보여지기
+        const topFive = records.sort((p, c) => p - c).slice(0, 5);//시간차 값을 오름차순으로 정렬후 5개 자르기
+        topFive.forEach((top, index) => { //배열에 대한 반복문
+          $result.append( //결과칸에 요소의 마지막에 새로운 요소 추가
+            document.createElement('br'),
+            `${index + 1}위: ${top}ms`, //index는 0부터니까 +1
+          );
+        });
+        
         //생략할수 있지만 
         startTime = null;
         endTime = null;
@@ -131,7 +140,9 @@
         $screen.classList.add('waiting');
         
         $screen.textContent = '클릭해서 시작하세요';
-      
+        // debugger;
+        // 코드 멈춤
+        // 디버거모드 변수보임
       }
     });
   </script>

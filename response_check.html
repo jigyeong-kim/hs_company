@@ -61,8 +61,10 @@
     let startTime; // 시작 시간
     let endTime; // 끝 시간
     
-    const records = [];
-    let timeoutId;
+    const records = []; // 끝시간 - 시작시간 결과값을 계속  저장
+    
+   
+    let timeoutId; // 시작시간 재주기 
 
     // 태그.classList.contains('클래스'); // 해당 클래스가 들어있으면 true
     // 태그.classList.add('클래스'); // 추가
@@ -70,7 +72,7 @@
     // 태그.classList.remove('클래스'); // 제거
 
     // new Date(); //현재시각 나옴
-    // new Date(연, 월, 일, 시, 분, 초); // 월만 0부터 
+    // new Date(연, 월, 일, 시, 분, 초); // 월만 0부터 // 년도는 fullyear // 시간들은 복수로 
     // new Date끼리 빼면 밀리초 단위로 차이 구해짐
 
     $screen.addEventListener('click', function () { //$screen을 누를때
@@ -96,7 +98,8 @@
       
       } else if ($screen.classList.contains('ready')) { // 준비 화면, 빨강
       
-        clearTimeout(timeoutId);
+        clearTimeout(timeoutId); // 성급하게 클릭했을시 타이머제거, 버그수정
+        
         $screen.classList.remove('ready');
         $screen.classList.add('waiting');
         $screen.textContent = '너무 성급하시군요!';
@@ -109,15 +112,21 @@
         //시간 차 저장하기
         const current = endTime - startTime;
         
-        records.push(current);
+        records.push(current); // 시간차를 records 배열로 저장 
         const average = records.reduce((a, c) => a + c) / records.length;
+        // 배열.reduce((누적값, 현잿값) => {return 새로운누적값;}, 초깃값);
+        // 초기값이 없으면 처음 현잿값이 초기값
+        // 배열을 객체로도 바꿀수 있음
+        // 
         
         $result.textContent = `현재 ${current}ms, 평균: ${average}ms`;
+        // 초록색 화면을 클릭하면 시간차와 평균값을 화면에 표출
         
+        //생략할수 있지만 
         startTime = null;
         endTime = null;
 
-        // 초록화면 클릭후 다시 대기화면(파랑)화명으로 바꾸기
+        // 초록화면 클릭후 다시 대기화면(파랑)화면으로 바꾸기
         $screen.classList.remove('now');
         $screen.classList.add('waiting');
         

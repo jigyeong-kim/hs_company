@@ -96,6 +96,11 @@
       
       } else if ($screen.classList.contains('ready')) { // 준비 화면, 빨강
       
+        clearTimeout(timeoutId);
+        $screen.classList.remove('ready');
+        $screen.classList.add('waiting');
+        $screen.textContent = '너무 성급하시군요!';
+      
       } else if ($screen.classList.contains('now')) { // 클릭 화면, 초록
         
         //끝 시간재기

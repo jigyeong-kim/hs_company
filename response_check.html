@@ -58,51 +58,64 @@
     const $screen = document.querySelector('#screen');
     const $result = document.querySelector('#result');
 
-    let startTime; //
-    let endTime;
+    let startTime; // 시작 시간
+    let endTime; // 끝 시간
     
     const records = [];
     let timeoutId;
 
-    //태그.classList.contains('클래스'); //해당 클래스가 들어있으면 true
+    // 태그.classList.contains('클래스'); // 해당 클래스가 들어있으면 true
     // 태그.classList.add('클래스'); // 추가
     // 태그.classList.replace('기존클래스', '수정클래스'); // 수정
     // 태그.classList.remove('클래스'); // 제거
 
-    $screen.addEventListener('click', function () { //$screen을 누를때
-      if ($screen.classList.contains('waiting')) { // 대기 화면
+    // new Date(); //현재시각 나옴
+    // new Date(연, 월, 일, 시, 분, 초); // 월만 0부터 
+    // new Date끼리 빼면 밀리초 단위로 차이 구해짐
 
-        $screen.classList.remove('waiting'); //클래스명 waiting 지우기
-        $screen.classList.add('ready'); //클래스명 ready 추가
+    $screen.addEventListener('click', function () { //$screen을 누를때
+      if ($screen.classList.contains('waiting')) { // 대기 화면, 파랑
+
+        $screen.classList.replace('waiting', 'ready');// 클래스명 wating을 ready로 수정
+        // $screen.classList.remove('waiting'); //클래스명 waiting 지우기
+        // $screen.classList.add('ready'); //클래스명 ready 추가
+
         $screen.textContent = '초록색이 되면 클릭하세요'; //텍스트 컨텐츠 변경
-      
-        timeoutId = setTimeout(function () {
-      
+
+        //파랑화면 클릭 후 특정 시간 동안 빨간화면이었다가 초록화면이 되어야 하기 때문에 
+        timeoutId = setTimeout(function () { // 2~3초 후에 초록화면으로 바꾸기
+          
+          // 시작 시간재기, 초록화면으로 바뀌고 재기
           startTime = new Date();
-          $screen.classList.remove('ready');
-          $screen.classList.add('now');
+          
+          $screen.classList.replace('ready', 'now'); //클래스명 ready를 now로 수정
           $screen.textContent = '클릭하세요!';
+        
+        }, Math.floor(Math.random() * 1000) + 2000); // 2000~3000 사이 수, 2000 <= (x * 1000)+2000 < 3000 
+        
       
-        }, Math.floor(Math.random() * 1000) + 2000); // 2000~3000 사이 수
+      } else if ($screen.classList.contains('ready')) { // 준비 화면, 빨강
       
-      } else if ($screen.classList.contains('ready')) { // 준비 화면
-      
-        clearTimeout(timeoutId);
-        $screen.classList.remove('ready');
-        $screen.classList.add('waiting');
-        $screen.textContent = '너무 성급하시군요!';
-      
-      } else if ($screen.classList.contains('now')) { // 클릭 화면
-      
+      } else if ($screen.classList.contains('now')) { // 클릭 화면, 초록
+        
+        //끝 시간재기
         endTime = new Date();
+        
+        //시간 차 저장하기
         const current = endTime - startTime;
+        
         records.push(current);
         const average = records.reduce((a, c) => a + c) / records.length;
+        
         $result.textContent = `현재 ${current}ms, 평균: ${average}ms`;
+        
         startTime = null;
         endTime = null;
+
+        // 초록화면 클릭후 다시 대기화면(파랑)화명으로 바꾸기
         $screen.classList.remove('now');
         $screen.classList.add('waiting');
+        
         $screen.textContent = '클릭해서 시작하세요';
       
       }

@@ -28,16 +28,16 @@
 </head>
 <body>
 
-  <div id="screen" class="waiting">클릭해서 시작하세요</div>
+  <div id="screen" class="waiting">클릭해서 시작하세요</div> <!--id는 태그 선택명, class는 상태명-->
   <div id="result"></div>
   
   <script>
     //파랑화면은 시작화면, 진행화면 빨강색, 완료화면 초록색
     
     //파랑화면을 클릭하면 빨강화면 전환
-    //빨강에서 초록화면으로 전환되기까지 시간재기
-    //아직 빨강화면일때 클릭하면 파랑화면으로 전화, 성급했다고 안내
-    //초록화면 클릭하기 까지 얼마나 걸렸는지 표시
+    //빨강에서 초록화면으로 전환, 시간재기 시작
+    //아직 빨강화면일때 클릭하면 파랑화면으로 전환, 성급했다고 메세지
+    //초록화면 클릭하기 까지 얼마나 걸렸는지 평균 표시
     //파랑화면으로 전환
 
     //1. 파랑화면을 띄운다
@@ -52,12 +52,61 @@
     //4-1. 파랑화면으로 전환하고 성급했다고 안내
 
     //5. 초록색 화면 클릭시
-    //5-1. 클릭할 때까지 얼마나 걸렸는지 측정하고 표시
+    //5-1. 초록화면 출력후 클릭할 때까지 얼마나 걸렸는지 측정하고 평균 표시
     //5-2. 파란화면으로 전환
 
     const $screen = document.querySelector('#screen');
     const $result = document.querySelector('#result');
 
+    let startTime; //
+    let endTime;
+    
+    const records = [];
+    let timeoutId;
+
+    //태그.classList.contains('클래스'); //해당 클래스가 들어있으면 true
+    // 태그.classList.add('클래스'); // 추가
+    // 태그.classList.replace('기존클래스', '수정클래스'); // 수정
+    // 태그.classList.remove('클래스'); // 제거
+
+    $screen.addEventListener('click', function () { //$screen을 누를때
+      if ($screen.classList.contains('waiting')) { // 대기 화면
+
+        $screen.classList.remove('waiting'); //클래스명 waiting 지우기
+        $screen.classList.add('ready'); //클래스명 ready 추가
+        $screen.textContent = '초록색이 되면 클릭하세요'; //텍스트 컨텐츠 변경
+      
+        timeoutId = setTimeout(function () {
+      
+          startTime = new Date();
+          $screen.classList.remove('ready');
+          $screen.classList.add('now');
+          $screen.textContent = '클릭하세요!';
+      
+        }, Math.floor(Math.random() * 1000) + 2000); // 2000~3000 사이 수
+      
+      } else if ($screen.classList.contains('ready')) { // 준비 화면
+      
+        clearTimeout(timeoutId);
+        $screen.classList.remove('ready');
+        $screen.classList.add('waiting');
+        $screen.textContent = '너무 성급하시군요!';
+      
+      } else if ($screen.classList.contains('now')) { // 클릭 화면
+      
+        endTime = new Date();
+        const current = endTime - startTime;
+        records.push(current);
+        const average = records.reduce((a, c) => a + c) / records.length;
+        $result.textContent = `현재 ${current}ms, 평균: ${average}ms`;
+        startTime = null;
+        endTime = null;
+        $screen.classList.remove('now');
+        $screen.classList.add('waiting');
+        $screen.textContent = '클릭해서 시작하세요';
+      
+      }
+    });
   </script>
 
 </body>

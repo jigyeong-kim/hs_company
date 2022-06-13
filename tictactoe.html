@@ -46,18 +46,21 @@
     // ]
 
     let turn ='O'; // 순서 
-    const data =[]; //
+    const data =[]; // 글자가 들어간 곳 저장
+    const $result = document.createElement('div'); // 승패결과 표출할 div
     
     for (let i = 0; i < 3; i++) {
       data.push([]); // 이차원 배열
     };
 
-    const $table = document.createElement('table');
+    const $table = document.createElement('table'); // table 태그 만들기
     for (let i = 0; i < 3; i++){
-      const $tr = document.createElement('tr');
-      for (let i = 0; i < 3; i++){
-        const $td = document.createElement('td');
+      const $tr = document.createElement('tr'); // tr태그 세개 만들기
+
+      for (let i = 0; i < 3; i++){ 
+        const $td = document.createElement('td'); // td태그 세개 만들기
         $td.addEventListener('click', (event) => {
+      
           //칸에 글자가 있나?
           if(event.target.textContent) return; //칸에 글자가 들어있으면 여기서 멈추기
 
@@ -73,15 +76,21 @@
             turn = 'O'
           }
         })
-        $tr.append($td);
+      
         //$tr.append(document.createElement('td'));
+        $tr.append($td); //tr에 td넣기
+      
       }
-      $table.append($tr);
+      $table.append($tr); // table에 tr넣기
     }
+
     document.body.append($table);
+    document.body.append($result);
 
 
     // 구조분해 할당
+
+    
     
   </script>
 

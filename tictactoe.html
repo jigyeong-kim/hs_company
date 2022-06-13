@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>틱택토!</title>
+
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+  
+    td {
+      border: 1px solid black;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+
+  <script>
+    // 1. 3X3 이차원 배열 준비
+    // 2. 0의 차례로 설정한다.
+    // 3. 3X3 표를 그린다.
+
+    // 4. 칸을 클릭한다.
+    // 5. 클릭한 칸이 비어있는가?
+    // 5-1. 비어있으면 현재차례를 칸에 넣는다.
+
+    // 6. 승부가 났는가?
+    // 6-1. 승부가 났다면 승자를 표시
+    // 6-2. 무승부이면 무승부라고 표시
+    // 6-3. 무승부도 아니면 차례를 넘긴다.
+
+    // 이차원 배열
+    // 배열안에 배열이 있을 때
+    // 표와 비슷한 모양이어서 실무에서 많이 사용
+    // [
+    //   [null, 'X', null],
+    //   ['O', null, 'X'],
+    //   [null, 'O', 'X'],
+    // ]
+
+    let turn ='O'; // 순서 
+    const data =[]; //
+    
+    for (let i = 0; i < 3; i++) {
+      data.push([]); // 이차원 배열
+    };
+
+    const $table = document.createElement('table');
+    for (let i = 0; i < 3; i++){
+      const $tr = document.createElement('tr');
+      for (let i = 0; i < 3; i++){
+        const $td = document.createElement('td');
+        $td.addEventListener('click', (event) => {
+          //칸에 글자가 있나?
+          if(event.target.textContent) return; //칸에 글자가 들어있으면 여기서 멈추기
+
+          //console.log('clicked');
+          event.target.textContent = turn; //$td를 눌렀을때 turn에 저장한 변수를 td에 쓰기 
+          
+          //승부확인
+
+          //순서넘기기
+          if(turn === 'O') { // turn이 O였으면 X로 바꾸기
+            turn = 'X';
+          }else if (turn === 'X'){ // turn이 X였으면 O로 바꾸기
+            turn = 'O'
+          }
+        })
+        $tr.append($td);
+        //$tr.append(document.createElement('td'));
+      }
+      $table.append($tr);
+    }
+    document.body.append($table);
+
+
+    // 구조분해 할당
+    
+  </script>
+
+  <!-- <table>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table> -->
+</body>
+</html>

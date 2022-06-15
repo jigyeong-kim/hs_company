@@ -64,7 +64,7 @@
       }
       $table.append($tr); // table에 tr넣기
       rows.push(cells);
-      $td.addEventListener('click', (event) => { //td를 눌렀을때
+      $t.addEventListener('click', (event) => { //td를 눌렀을때
       
           //칸에 글자가 있나?
           if(event.target.textContent) return; //칸에 글자가 들어있으면 여기서 멈추기
@@ -93,6 +93,10 @@
     //  const { body } = document;
     //  const body = document.body;
     
+    // 이벤트 버블링
+    // 부모에게 이벤트가 있고 자식에게 없는데 자식에게 이벤트 생겼을때 부모것이 먹는것??
+    // event.currentTarget // 이벤트를 연결한 태그에 접근
+    
     //1분체크
     //1 다음 객체에서 a, c, e 속성을 구조분해 할당 문법으로 변수에 할당해 보세요.
     
@@ -118,6 +122,19 @@
     // arr
     // (5) [Array(4), Array(4), Array(4), Array(4), Array(4)]
     
+    //3 버튼을 클릭할 때 'hello, event bubbling'을 alert 하게 다음 코드를 수정하세요. 
+    //단, 이벤트 리스너를 button 태그에 달아서는 안 됩니다.
+    
+    //<header> 
+    //  <div> 
+    //    <button>클릭</button> 
+    //  </div> 
+    //</header> 
+    //<script>
+    // document.querySelector('header').addEventListener('click', () => {
+    //   console.log('hello, event bubbling');
+    // });
+    //</script>
     
   </script>
 

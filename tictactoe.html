@@ -64,7 +64,7 @@
       }
       $table.append($tr); // table에 tr넣기
       rows.push(cells);
-      $t.addEventListener('click', (event) => { //td를 눌렀을때
+      $table.addEventListener('click', (event) => { //td를 눌렀을때
       
           //칸에 글자가 있나?
           if(event.target.textContent) return; //칸에 글자가 들어있으면 여기서 멈추기

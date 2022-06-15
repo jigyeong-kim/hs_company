@@ -64,6 +64,8 @@
       }
       $table.append($tr); // table에 tr넣기
       rows.push(cells);
+      
+      // 이벤트 버블링
       $table.addEventListener('click', (event) => { //td를 눌렀을때
       
           //칸에 글자가 있나?
@@ -95,7 +97,11 @@
     
     // 이벤트 버블링
     // 부모에게 이벤트가 있고 자식에게 없는데 자식에게 이벤트 생겼을때 부모것이 먹는것??
-    // event.currentTarget // 이벤트를 연결한 태그에 접근
+    // event.currentTarget() // 이벤트를 연결한 직접적 태그에 접근
+    // event.sropPropagation() // 자식 이벤트를 부모까지 호출 막는거
+    // event.preventDefault() // 태그의 기본동작 막기
+    // 반대경우 이벤트 캡쳐링 // 팝업 바깥쪽 누르면 닫히기
+    // useCapture 기본값은 false, ture로 해주면 실행됨
     
     //1분체크
     //1 다음 객체에서 a, c, e 속성을 구조분해 할당 문법으로 변수에 할당해 보세요.

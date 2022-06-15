@@ -47,21 +47,17 @@
 
     const { body } = document; //구조분해 할당
     // const body = document.body;
-    let turn ='O'; // 순서 
-    const data =[]; // 글자가 들어간 곳 저장
     const $result = document.createElement('div'); // 승패결과 표출할 div
-    
-    for (let i = 0; i < 3; i++) {
-      data.push([]); // 이차원 배열, data = [[], [], []]
-    };
+    let turn ='O'; // 순서 
+    const rows =[]; // 글자가 들어간 곳 저장
 
     const $table = document.createElement('table'); // table 태그 만들어서 변수에 저장
     for (let i = 0; i < 3; i++){
       const $tr = document.createElement('tr'); // tr태그 만들어서 변수에 저장
-
-      for (let i = 0; i < 3; i++){ 
+      const cells =[];
+      for (let j = 0; j < 3; j++){ 
         const $td = document.createElement('td'); // td태그 만들어서 변수에 저장
-
+        cells.push($td);
         $td.addEventListener('click', (event) => { //td를 눌렀을때
       
           //칸에 글자가 있나?
@@ -78,13 +74,15 @@
           }else if (turn === 'X'){ // turn이 X였으면 O로 바꾸기
             turn = 'O'
           }
+          //삼항연산자로 줄인것
+          //turn = (turn === 'X' ? 'O' : 'X');
         })
       
         //$tr.append(document.createElement('td'));
         $tr.append($td); //tr에 td넣기
-      
       }
       $table.append($tr); // table에 tr넣기
+       rows.push(cells);
     }
 
     body.append($table);
@@ -92,7 +90,33 @@
 
 
     // 구조분해 할당
+    //  const { body } = document;
+    //  const body = document.body;
+    
+    //1분체크
+    //1 다음 객체에서 a, c, e 속성을 구조분해 할당 문법으로 변수에 할당해 보세요.
+    
+    //const {a, b:{ c, d:{e}} = obj; //다음 세줄을 한줄로 요약
+    //const a = obj.a;
+    //const c = obj.b.c;
+    //const e = obj.b.d.e;
+    
+    //b를 구조분해하고 싶을 때
+    //const {a, b} = obj;
+    //const {d: {e}} = b;
+    
+    //2 5(줄) × 4(칸) 이차원 배열을 만들어 보세요. 배열의 요소는 모두 1로 만듭니다.
 
+    // const arr = [];
+    // for(let i = 0; i < 5; i++){
+    //   const cells = [];
+    //   for(let j = 0; j < 4; j++){
+    //       cells.push(1)
+    //   }
+    //   arr.push(cells)
+    // }
+    // arr
+    // (5) [Array(4), Array(4), Array(4), Array(4), Array(4)]
     
     
   </script>

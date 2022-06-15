@@ -58,7 +58,13 @@
       for (let j = 0; j < 3; j++){ 
         const $td = document.createElement('td'); // td태그 만들어서 변수에 저장
         cells.push($td);
-        $td.addEventListener('click', (event) => { //td를 눌렀을때
+        
+        //$tr.append(document.createElement('td'));
+        $tr.append($td); //tr에 td넣기
+      }
+      $table.append($tr); // table에 tr넣기
+      rows.push(cells);
+      $td.addEventListener('click', (event) => { //td를 눌렀을때
       
           //칸에 글자가 있나?
           if(event.target.textContent) return; //칸에 글자가 들어있으면 여기서 멈추기
@@ -77,12 +83,6 @@
           //삼항연산자로 줄인것
           //turn = (turn === 'X' ? 'O' : 'X');
         })
-      
-        //$tr.append(document.createElement('td'));
-        $tr.append($td); //tr에 td넣기
-      }
-      $table.append($tr); // table에 tr넣기
-       rows.push(cells);
     }
 
     body.append($table);

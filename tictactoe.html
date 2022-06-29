@@ -51,6 +51,108 @@
     let turn ='O'; // 순서 
     const rows =[]; // 글자가 들어간 곳 저장
 
+    //[td, td, td],
+    //[td, td, td],
+    //[td, td, td],
+    
+    const checkWinner = (target) => { // target = 내가 클릭한 td
+      
+      let rowIndex;
+      let cellIndex;
+      rows.forEach((row, ri) => { 
+        row.forEach((cell, ci) => {  
+          if (cell === target) {
+            rowIndex = ri; // 몇번째 줄 인덱스 값
+            cellIndex = ci; // 몇번째 칸 인덱스 값
+          }
+        });//이중반복문
+      });//태그의 세로줄과 가로줄 찾는 코드
+      
+      // 더 쉬운 방법......
+      // const rowIndex = target.parentNode.rowIndex; // 선택한 td의 부모인 tr의 인덱스값
+      // const cellIndex = target.cellIndex; // 선택한 td의 인덱스값
+      
+      //Array.from을 쓰면 유사배열을 배열로 
+      
+      // 세 칸 다 채워졌나?
+      let hasWinner = false; //검사할 땐 처음에는 false로 시작
+      
+      // 가로줄 검사
+      if (
+        rows[rowIndex][0].textContent === turn &&
+        rows[rowIndex][1].textContent === turn &&
+        rows[rowIndex][2].textContent === turn
+      ) {
+        hasWinner = true;
+      }
+      // 세로줄 검사
+      if (
+        rows[0][cellIndex].textContent   === turn &&
+        rows[1][cellIndex].textContent === turn &&
+        rows[2][cellIndex].textContent === turn
+      ) {
+        hasWinner = true;
+      }
+      // 대각선 검사
+      if (
+        rows[0][0].textContent === turn &&
+        rows[1][1].textContent === turn &&
+        rows[2][2].textContent === turn
+      ) {
+        hasWinner = true;
+      }
+      if (
+        rows[0][2].textContent === turn &&
+        rows[1][1].textContent === turn &&
+        rows[2][0].textContent === turn
+      ) {
+        hasWinner = true;
+      }
+      return hasWinner;
+    };
+
+    const callback = (event) => {
+      if (event.target.textContent !== '') { // 칸이 이미 채워져 있는가?
+        console.log('빈칸이 아닙니다.');
+        return;
+      }
+      // 빈칸이면
+      console.log('빈칸입니다');
+      event.target.textContent = turn;
+      const hasWinner = checkWinner(event.target);
+      // 승자가 있으면
+      if (hasWinner) {
+        $result.textContent = `${turn}님이 승리!`;
+        $table.removeEventListener('click', callback); // 승리했을 때는 내용지우기
+        return;
+      }
+      // 승자가 없으면
+      let draw = true; // 무승부라고 처음부터 설정
+      rows.forEach((row) => {
+        row.forEach((cell) => {
+          if (!cell.textContent) { // 한칸이라도 비어있으면 무승부가 아님
+            draw = false;
+            // return undifined 생략 된곳 반복문은 return 써도 중단 안됨. every메서드 사용하기
+            // 배열.flat()하면 이차원 배열을 일차원 배열로 만들어줌. every메서드 쓸수 있음
+            // every은 하나라도 false면 false, some은 하나라도 true면 true
+            
+            // rows.flat().every((td) => td.textContent) // 모두 존재하는가?
+            // rows.flat().every((td) => !td.textContent) // 모두 비어있는가?
+            // rows.flat().some((td) => td.textContent) // 하나라도 존재하는가?
+            
+          }
+        });
+      });
+      if (draw) { // draw가 true가 나오면
+        $result.textContent = `무승부`;
+        return;
+      }
+      
+      // draw가 false가 나오면 순서 넘기기
+      
+      turn = turn === 'X' ? 'O' : 'X';
+    };
+    
     const $table = document.createElement('table'); // table 태그 만들어서 변수에 저장
     for (let i = 0; i < 3; i++){
       const $tr = document.createElement('tr'); // tr태그 만들어서 변수에 저장
@@ -140,6 +242,22 @@
     // document.querySelector('header').addEventListener('click', () => {
     //   console.log('hello, event bubbling');
     // });
+    
+    //4 다음 배열에서 한 칸이라도 null이 들어 있으면 true를 반환하고, 아니면 false를 출력하는 코드를 작성하세요.
+    
+    //한칸이라도 이니까 some
+    
+    //const array = [1, 'hello', null, undefined, false];
+    
+    let some = false; // 검사하는 거니까 false로 시작
+    array.forEach((value) => { //array 반복문으로
+      if (value === null) { // 배열중 null이랑 같은거가 있으면
+        some = true; //true 반환
+      }
+    });
+    console.log(some); // true
+    
+    
     //</script>
     
   </script>

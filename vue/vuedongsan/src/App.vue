@@ -22,24 +22,30 @@
     <span>공지<br>사항</span>
   </button> -->
   
-  <div @click="모달창열렸니 = true">
-    <img src="./assets/room0.jpg" alt="">
-    <h4>{{ products[0] }}</h4>
-    <p>{{ price1 }}만원</p>
+  <div>
+    <div @click="모달창열렸니 = true">
+      <img src="./assets/room0.jpg" alt="">
+      <h4>{{ products[0] }}</h4>
+      <p>{{ price1 }}만원</p>
+    </div>
     <button @click="신고수[0] += 1">허위매물신고</button> <span>신고수 : {{ 신고수[0] }}</span>
   </div>
 
   <div>
-    <img src="./assets/room1.jpg" alt="">
-    <h4>{{ products[1] }}</h4>
-    <p>{{ price2 }}만원</p>
+    <div>
+      <img src="./assets/room1.jpg" alt="">
+      <h4>{{ products[1] }}</h4>
+      <p>{{ price2 }}만원</p>
+    </div>
     <button @click="신고수[1] += 1">허위매물신고</button> <span>신고수 : {{ 신고수[1] }}</span>
   </div>
   
   <div>
-    <img src="./assets/room2.jpg" alt="">
-    <h4>{{ products[2] }}</h4>
-    <p>{{ price3 }}만원</p>
+    <div>
+      <img src="./assets/room2.jpg" alt="">
+      <h4>{{ products[2] }}</h4>
+      <p>{{ price3 }}만원</p>
+    </div>
     <button @click="신고수[2] += 1">허위매물신고</button> <span>신고수 : {{ 신고수[2] }}</span>
   </div>
 

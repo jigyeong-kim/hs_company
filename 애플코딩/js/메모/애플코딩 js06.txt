@@ -1,0 +1,17 @@
+class명을 원하는 요소에 추가하는 법
+  - 셀렉터로찾은요소.classList.add('클래스명')
+
+class명을 원하는 요소에서 제거하는 법
+  - 셀렉터로찾은요소.classList.remove('클래스명') 
+
+.classList.toggle() 쓰면
+  - 클래스명이 있으면 제거하고
+  - 클래스명이 없으면 붙여줍니다.
+
+querySelector
+  - querySelector() 안에는 css 셀렉터 문법을 사용가능
+  - 다만 querySelector() 는 맨 위의 한개 요소만 선택
+
+querySelectorAll()
+  - 여러개 선택하고 싶거나
+  - 특정 X번째 요소를 선택하고 싶으면 뒤에 []인뎃스값

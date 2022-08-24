@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>MouseWheel</title>
+    <style type="text/css">
+        html,body{ margin:0; padding:0; width:100%; height:100%;}
+        .boxwrap{ display: table; table-layout: fixed; width: 400%; height: 100%; table-layout: fixed;}
+        .box{ display: table-cell;position:relative; font-size:24pt;}
+
+        .cts13907_wrap .profile_title{position:relative;margin-top: 48px;margin-bottom: 63px;font-size: 28px;line-height: 34px;letter-spacing: -0.05em;font-weight: 200;}
+        .cts13907_wrap .profile_title:before{display: block;position: absolute;left: 233px;top: -70px;width: 231px;height: 189px;background: url(../images/contents/cts13907_colon.png) no-repeat;content: '';z-index: -1;}
+        .cts13907_wrap .profile_title .title{display: block;width: 385px;height: 49px;margin-top: 31px;background: url(../images/contents/cts13907_title.png) no-repeat;font-size: 0;line-height: 0;}
+
+        .cts13907_wrap .profile_info li{display: inline-block;position: relative;padding-left: 13px;margin-right: 75px;font-size: 18px;line-height: 32px;letter-spacing: -0.05em;font-weight: 200;}
+        .cts13907_wrap .profile_info li:before{display: block;position: absolute;top:calc(50% - 25px);left: 0;width: 1px;height: 50px;background-color: #000;content: '';}
+        .cts13907_wrap .profile_info li .title{display: block;font-weight: 600;}
+
+        .cts13907_wrap .profile_box{position:relative;margin-top: 103px;}
+
+        .cts13907_wrap .profile_box:before{display: block;position:absolute;bottom: -100px;right: calc((100% - 1550px) / 2);width: 618px;height: 687px;background: url(../images/contents/cts13907_img2.png) no-repeat;content: '';z-index: 100;}
+        .cts13907_wrap .profile_box:after{display: block;position: absolute;bottom: -162px;left:calc(50% - 1020px);width: 1932px;height: 475px;background: url(../images/contents/cts13907_bg.png) no-repeat;content: '';z-index: -2;}
+
+        .cts13907_wrap .profile_box .profile_list .slick-list{margin-left:calc((100% - 1624px) / 2);}
+
+        .cts13907_wrap .profile_box .profile_item{width: 800px;padding-left: 37px;padding-top: 20px;}
+
+        .cts13907_wrap .profile_box .profile_item .title{display: table;position: relative;width: 167px;height: 167px;text-align: center;}
+        .cts13907_wrap .profile_box .profile_item .title:before{display: block;position: absolute;top:calc(50% - 79px);left: calc(50% - 79px);width: 155px;height: 155px;transform: rotate(45deg);border-radius: 65px;background: linear-gradient(#fff, #fff);content: '';box-shadow: 10px 17px 50px 0px rgba(0, 0, 0, 0.15);z-index: -1;opacity: 0.5;transition: 1ms ease-in-out;}
+
+        .cts13907_wrap .profile_box .profile_item .title span{display: table-cell;vertical-align: middle;font-size: 28px;line-height: 42px;color: #5862ad;letter-spacing: -0.025em;font-family: 'MBC-1961-M', 'NotoKr', 'Malgun Gothic', '맑은 고딕', Dotum, '돋움', Helvetica, AppleSDGothicNeo, sans-serif;}
+
+        .cts13907_wrap .profile_box .profile_item .text{margin-top: 66px;margin-left: 35px;font-size: 18px;line-height: 32px;letter-spacing: -0.05em;}
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var elm = ".profile_item";
+            $(elm).each(function (index) {
+                // 개별적으로 Wheel 이벤트 적용
+                $(this).on("mousewheel DOMMouseScroll", function (e) {
+                    e.preventDefault();
+                    var delta = 0;
+                    if (!event) event = window.event;
+                    if (event.wheelDelta) {
+                        delta = event.wheelDelta / 120;
+                        if (window.opera) delta = -delta;
+                    } 
+                    else if (event.detail)
+                        delta = -event.detail / 3;
+                    var moveTop = $(window).scrollLeft();
+                    var elmSelecter = $(elm).eq(index);
+                    // 마우스휠을 위에서 아래로
+                    if (delta < 0) {
+                        if ($(elmSelecter).next() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).next().offset().left;
+                            }catch(e){}
+                        }
+                    // 마우스휠을 아래에서 위로
+                    } else {
+                        if ($(elmSelecter).prev() != undefined) {
+                            try{
+                                moveTop = $(elmSelecter).prev().offset().left;
+                            }catch(e){}
+                        }
+                    }
+                     
+                    // 화면 이동 0.8초(800)
+                    $(".profile_box").stop().animate({
+                        scrollLeft: moveTop + 'px'
+                    }, {
+                        duration: 800, complete: function () {
+                        }
+                    });
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+  <div class="cts13907_wrap">
+    <div class="cont_wrap">
+      <div class="profile_title">
+        포천 시민 여러분과<br>
+        더욱 더 힘차게 걸어나가는
+        <div class="title">
+          백영현이 되겠습니다.
+        </div>
+      </div>
+      <ul class="profile_info">
+        <li>
+          <span class="title">성명</span>
+          백 영 현(白永鉉)
+        </li>
+        <li>
+          <span class="title">출생</span>
+          1961년 1월 7일생
+        </li>
+        <li>
+          <span class="title">출생지</span>
+          포천시 신북면 기지리
+        </li>
+        <li>
+          <span class="title">가족사항</span>
+          배우자, 2남 1녀
+        </li>
+      </ul>
+  
+    </div>
+    <div class="profile_box">
+      <div class="boxwrap profile_list">
+        <div class="box profile_item clearfix">
+          <div class="title">
+            <span>학력</span>
+          </div>
+          <div class="text">
+            <ul>
+              <li>신북초등학교 졸업</li>
+              <li>포천중학교 졸업</li>
+              <li>포천종합고등학교(현 포천일고등학교) 졸업</li>
+              <li>단국대학교 토목공학과 졸업(학사)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box profile_item clearfix">
+          <div class="title">
+            <span>병역</span>
+          </div>
+          <div class="text">
+            <p class="blt">육군병장 만기전역</p>
+          </div>
+        </div>
+
+        <div class="box profile_item clearfix">
+          <div class="title">
+            <span>경력</span>
+          </div>
+          <div class="text">
+            <ul>
+              <li>공무원(지방토목기원보) 임용(포천시 이동면, 1987. 5)</li>
+              <li>경기도청 전입 및 근무(1995. 5. ~ 2007. 1.)</li>
+              <li>전)포천시 선단동장(2008. 6. 19. ~ 2010. 6. 30.)</li>
+              <li>전)포천시 에코도시개발과장(2010. 7. 1. ~ 2011. 6. 30.)</li>
+              <li>전)포천시 한탄강관광지원과장(2011. 7. 1. ~ 2014. 8. 31.)</li>
+              <li>전)포천시 전략사업과장(2014. 9. 1. ~ 2014. 12. 31.)</li>
+              <li>전)포천시 소흘읍장(2015. 1. 1. ~ 2016. 12. 31.)</li>
+              <li>전)20대 대통령선거 국민의힘 중앙선거대책본부 지역균형발전 추진단장</li>
+              <li>현)국민의힘 경기도당 정책개발본부 행정혁신위원장</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box profile_item clearfix">
+          <div class="title">
+            <span>수상</span>
+          </div>
+          <div class="text">
+            <ul>
+              <li>근정포상(대통령 / 2017.06.30.)</li>
+              <li>제40회 청백봉사상 (행정자치부장관 / 2016.11.07.)</li>
+              <li>제14회 경기공무원대상 (경기도지사 / 2012.12.31.)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+---jQuery---
+
+구글에 jQuery cdn 검색, 스크립트 태그 복붙 해주기, 설치한 곳 하단에서 jQuery 문법사용가능
+
+
+document.querySelector = $
+.addEventListener = .on
+.innerHTML = .html
+.style.color = .css('color', '')
+
+.classList.add = .addClass('클래스명')
+.classList.remove = .removeClass('클래스명')
+.classList.toggle = .toggleClass('클래스명')
+
+애니메이션
+.hide() 는 사라지게
+.fadeOut() 은 서서히 사라지게
+.slideUp() 은 줄어들며 사라지게 만들어줍니다. 
+
+* 반대 효과
+- show() fadeIn() slideDown()
+- fadeToggle()

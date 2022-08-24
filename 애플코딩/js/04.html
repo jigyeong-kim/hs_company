@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="02.css">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="alert-box" class="alert-box">
+    알림창임
+    <button onclick="열기('none')"><span>닫기</span></button>
+  </div>
+  <button onclick="열기('block')">열기</button>
+
+</body>
+<script>
+
+  function 열기(구멍){
+    document.getElementById('alert-box').style.display = 구멍;
+  }
+
+
+  // function plus(){
+  //   2 + 1
+  // }
+  // function plus2(){
+  //   2 + 2
+  // }
+  // function plus3(){
+  //   2 + 3
+  // }
+
+  function plus(구멍){
+    2 + 구멍
+  }
+
+  plus(1); // 2+1
+  plus(2); // 2+2
+  plus(3); // 2+3
+
+</script>
+</html>

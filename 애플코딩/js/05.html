@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="02.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="id-box" class="alert-box">
+    <p id="title">알림창임</p>
+    <button id="close"><span>닫기</span></button>
+  </div>
+  
+
+  <button onclick="로그인('block', '아이디를 입력하세요', 'skyblue')">아이디</button>
+  <button onclick="로그인('block', '비밀번호를 입력하세요', 'pink')">비번</button>
+
+  <script>
+   
+   document.getElementById('close').addEventListener('click', function(){
+    document.getElementById('id-box').style.display = 'none';
+   }); // id 'close'요소를 클릭하면 안의 코드를 실행해주세요
+
+
+  function 로그인(a, b, c){
+    document.getElementById('id-box').style.display = a;
+    document.getElementById('title').innerHTML = b;
+    document.getElementById('id-box').style.backgroundColor = c;
+  }
+
+  </script>
+
+</body>
+</html>

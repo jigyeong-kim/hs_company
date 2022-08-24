@@ -1,0 +1,22 @@
+* getElementsByClassName 셀렉터
+ - id말고 class로도 찾을수 있음
+ - id는 하나지만 class는 여러개 일수 있음
+
+ - getElementsByClassName('클래스명')[순서]
+
+getElementsByTagName -> 태그명으로 찾아줌
+getElementsByName -> name 속성으로 찾아줌
+
+* 이벤트 리스너
+  document.getElementById('어쩌구').addEventListener('click', function(){
+      //실행할 코드 
+  });
+  
+  - 'id가 어쩌구인 요소를 클릭하면 안의 코드를 실행해주세요~' 라는 뜻
+  
+  - event 란
+    · 클릭('click'), 키입력('keydown'), 스크롤('scroll'), 드래그('mouseover') 등
+
+  - function(){} 
+    · 파라미터자리에 들어가면 콜백함수
+    · 코드를 순차적 실행할때 

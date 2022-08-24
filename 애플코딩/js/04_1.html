@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="02.css">
+  <title>Document</title>
+</head>
+<body>
+  <div id="id-box" class="alert-box">
+    <p id="title">알림창임</p>
+    <!-- <button onclick="닫기()"><span>닫기</span></button> -->
+    <button onclick="로그인('none', '', '')"><span>닫기</span></button>
+  </div>
+
+  <!--따로따로-->
+  <button onclick="아이디()">아이디</button>
+  <button onclick="비번()">비번</button>
+
+
+  <!--하나로 합치기-->
+  <button onclick="로그인('block', '아이디를 입력하세요', 'skyblue')">아이디</button>
+  <button onclick="로그인('block', '비밀번호를 입력하세요', 'pink')">비번</button>
+
+  <script>
+   
+   function 아이디(){
+    document.getElementById('id-box').style.display = 'block';
+    document.getElementById('id-box').style.backgroundColor = 'skyblue';
+    document.getElementById('title').innerHTML = '아이디를 입력하세요';
+  }
+
+  function 비번(){
+    document.getElementById('id-box').style.display = 'block';
+    document.getElementById('id-box').style.backgroundColor = 'pink';
+    document.getElementById('title').innerHTML = '비밀번호를 입력하세요';
+  }
+
+  function 닫기(){
+    document.getElementById('id-box').style.display = 'none';
+  }
+
+  // 하나로 합치기
+  function 로그인(a, b, c){
+    document.getElementById('id-box').style.display = a;
+    document.getElementById('title').innerHTML = b;
+    document.getElementById('id-box').style.backgroundColor = c;
+  }
+
+  </script>
+
+</body>
+</html>

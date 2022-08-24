@@ -1,0 +1,43 @@
+.alert-box{display: none;position: relative;padding: 20px;background-color: skyblue;color: #fff;border-radius: 5px;}
+.alert-box button{display: block;position: absolute;top: calc(50% - 10px);right: 20px;padding: 0;font-size: 0;line-height: 0;border: none;background-color: transparent;}
+
+.alert-box button span{display: block;position: relative;width: 20px;height: 20px;font-size: 0;line-height: 0;border: none;background-color: transparent;transform: rotate(45deg);}
+.alert-box button span:before{display: block;position: absolute;top: calc(50% - 1px);left: calc(50% - 10px);width: 20px;height: 1px;background-color: #000;content: '';}
+.alert-box button span:after{display: block;position: absolute;top: calc(50% - 10px);left: calc(50% - 1px);width: 1px;height: 20px;background-color: #000;content: '';}
+
+/* 06.html */
+
+.list-group{visibility: hidden;bottom: 100%;transition: all ease-in-out 0.3s;overflow: hidden;}
+.list-group.show{visibility: visible;bottom: 0;}
+
+/* 08.html */
+.black-bg {
+  /* display:none; */ /* html 지우기 */
+  visibility: hidden; /* 모습만 숨기기 */
+  position : fixed;
+  top: 0;
+  width : 100%;
+  height : 100%;
+  padding: 30px;
+  background : rgba(0,0,0,0.5);
+  z-index : 5;
+  opacity: 0;
+  transition: all 1s;
+}
+.black-bg.show{
+  /*display: block;*/
+  visibility: visible;
+  opacity: 1;
+}
+.white-bg {
+  padding: 30px;
+  background: white;
+  border-radius: 5px;
+}
+
+/* 09.html */
+
+.main-bg {
+  padding: 100px 20px;
+  background: lightgrey;
+}
